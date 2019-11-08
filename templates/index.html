@@ -10,10 +10,8 @@
                 oTable.rows[i].cells[0].innerHTML = (i + 1);
                 if (i % 2 == 0)
                     oTable.rows[i].className = "ys01";
-            }
-            }
-        }
-
+             }
+             }
             </script>
         </head>
     <style>
@@ -27,6 +25,7 @@
     <body>
 
         <table id="tt" border="2">
+            <button id="query_by_name_btn" onclick="initData()">加载原始数据</button>
             <tr> <font>姓名查询：</font><input id="query_by_name"/><span style="padding: 10px"><button id="query_by_name_btn" onclick="queryPepople()">查  询</button></span> </tr>
             <tr> <td>序号</td>  <td>姓名</td> <td>身份证号</td> <td>户主</td> </tr>
             {%  for d in data %}
