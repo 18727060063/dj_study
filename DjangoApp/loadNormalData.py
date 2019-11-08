@@ -3,7 +3,7 @@ from DjangoApp.models import NormalPeople
 
 #添加普通人员数据
 def readTecExcel():
-    work_book = xlrd.open_workbook("D:/lei_dev/龙洞V2/normalpeople.xls")
+    work_book = xlrd.open_workbook("source/normalpeople.xls")
     sheet = work_book.sheet_by_index(0)
     row_count = sheet.nrows  # 行数
     col_count = sheet.ncols  # 列数
@@ -24,7 +24,3 @@ def readTecExcel():
             model.pGender = sheet.row_values(i)[10]
         model_list.append(model)
     NormalPeople.objects.bulk_create(model_list)
-
-
-def get_people_byconditions():
-    NormalPeople.qu
