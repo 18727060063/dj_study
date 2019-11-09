@@ -5,7 +5,7 @@ from DjangoApp.models import NormalPeople
 
 
 def index(request):
-    loadNormalData.readTecExcel()
+    #loadNormalData.readTecExcel()
     bb= NormalPeople.objects.all()
     return render_to_response('index.html', {'data': bb})
 
