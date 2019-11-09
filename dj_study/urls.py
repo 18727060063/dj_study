@@ -18,6 +18,7 @@ from django.urls import path
 from DjangoApp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('index/', views.index),
+    path(r'admin/', admin.site.urls),
+    path(r'index/', views.index),
+    path(r"load_original_data/", views.load_original_data)
 ]

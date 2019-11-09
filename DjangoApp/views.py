@@ -5,9 +5,10 @@ from DjangoApp.models import NormalPeople
 
 
 def index(request):
-    #loadNormalData.readTecExcel()
+    # loadNormalData.readTecExcel()
     bb= NormalPeople.objects.all()
-    return render_to_response('index.html', {'data': bb})
+    return render_to_response('index.html', {"data": bb})
 
-def initData(request):
-    print("测试")
+def load_original_data(request):
+    loadNormalData.readTecExcel()
+    return render_to_response('index.html')
