@@ -1,85 +1,97 @@
 <!DOCTYPE html>
 <html>
-        <head lang="en">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" charset="UTF-8">
-            <title>龙洞村</title>
-            <script language="javascript" type="text/javascript">
-              // 绑定点击事件
-                 function query() {;
-                    const ajaxObj = new XMLHttpRequest();
-                    var query_name = document.getElementById("query_by_name").value;
-                    ajaxObj.open('GET', '/load_original_data?name='+query_name);
-                    ajaxObj.send();
-                    //（4）注册事件。 onreadystatechange事件，状态改变时就会调用。
-                    //如果要在数据完整请求回来的时候才调用，我们需要手动写一些判断的逻辑。
-                    ajaxObj.onreadystatechange = function () {
-                        // 为了保证 数据 完整返回，我们一般会判断 两个值
-                        if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
-                            // 修改页面的显示
-                            let json_data = JSON.parse(ajaxObj.responseText)
-                            get_table(json_data)
-                        }
-
-                    }
-                }
-
-            function get_table(json_data) {
-          let tbody = document.getElementById('tbMain')
-                roveRows()
-          for(let i = 0;i < json_data.length; i++){ //遍历一下json数据  
-             const trow = getDataRow(json_data[i].fields); //定义一个方法,返回tr数据  
-             tbody.appendChild(trow);  
-          }  
-      }  
-        
-            function roveRows() {
-                let tbody = document.getElementById('tbMain');
-                let rowNum = tbody.rows.length;
-                for (let i=0;i<rowNum;i++) {
-                    tbody.deleteRow(i)
-                    rowNum=rowNum-1
-                    i=i-1
+<head lang="en">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+          charset="UTF-8">
+    <title>龙洞村</title>
+    <script language="javascript" type="text/javascript">
+        // 绑定点击事件
+        function query() {
+            ;
+            const ajaxObj = new XMLHttpRequest();
+            var query_name = document.getElementById("query_by_name").value;
+            ajaxObj.open('GET', '/load_original_data?name=' + query_name);
+            ajaxObj.send();
+            //（4）注册事件。 onreadystatechange事件，状态改变时就会调用。
+            //如果要在数据完整请求回来的时候才调用，我们需要手动写一些判断的逻辑。
+            ajaxObj.onreadystatechange = function () {
+                // 为了保证 数据 完整返回，我们一般会判断 两个值
+                if (ajaxObj.readyState == 4 && ajaxObj.status == 200) {
+                    // 修改页面的显示
+                    let json_data = JSON.parse(ajaxObj.responseText)
+                    get_table(json_data)
                 }
             }
-             function getDataRow(data){  
-                 let row = document.createElement('tr'); //创建行  
-                 let idCell = document.createElement('td'); //创建第一列编号  
-                 idCell.innerHTML = data.pAddress; //填充数据  
-                 row.appendChild(idCell); //加入行  ，下面类似  
-                  
-                 let nameCell = document.createElement('td');//创建第二列姓名 
-                 nameCell.innerHTML = data.pName;  
-                 row.appendChild(nameCell);  
-                   
-                 let idCardCell = document.createElement('td');//创建第三列身份证号
-                 idCardCell.innerHTML = data.pIdNo;  
-                 row.appendChild(idCardCell);  
+        }
 
-                 let hostNameCell = document.createElement('td');//创建第四列，操作列  
-                      hostNameCell.innerHTML = data.pHostName;  
-                 row.appendChild(hostNameCell);  
-                 return row; //返回tr数据      
-             }
-            </script>
-        </head>
-    <style>
-    body{
+        function get_table(json_data) {
+            let tbody = document.getElementById('tbMain')
+            roveRows()
+            for (let i = 0; i < json_data.length; i++) { //遍历一下json数据  
+                const trow = getDataRow(i, json_data[i].fields); //定义一个方法,返回tr数据  
+                tbody.appendChild(trow);
+            }
+        }
+
+        function roveRows() {
+            let tbody = document.getElementById('tbMain');
+            let rowNum = tbody.rows.length;
+            for (let i = 0; i < rowNum; i++) {
+                tbody.deleteRow(i)
+                rowNum = rowNum - 1
+                i = i - 1
+            }
+        }
+
+        function getDataRow(index, data) {
+            let row = document.createElement('tr'); //创建行  
+
+            let indexCell = document.createElement('td'); //创建第一列编号  
+            indexCell.innerHTML = index + 1
+            row.appendChild(indexCell); //加入行  ，下面类似     
+
+
+            let nameCell = document.createElement('td');//创建第二列姓名 
+            nameCell.innerHTML = data.pName;
+            row.appendChild(nameCell);
+
+            let idCardCell = document.createElement('td');//创建第三列身份证号
+            idCardCell.innerHTML = data.pIdNo;
+            row.appendChild(idCardCell);
+
+            let hostNameCell = document.createElement('td');//创建第四列，操作列  
+            hostNameCell.innerHTML = data.pHostName;
+            row.appendChild(hostNameCell);
+
+            let idCell = document.createElement('td'); //创建第一列编号                                                                          let idCell = document.createElement('td'); //创建第一列编号  
+            idCell.innerHTML = data.pAddress; //填充数据  
+            row.appendChild(idCell); //加入行  ，下面类似  
+
+            return row; //返回tr数据      
+        }
+    </script>
+</head>
+<style>
+    body {
         text-align: center;
     }
-    </style>
-    <body>
-        <font>姓名查询：</font><input id="query_by_name"/><span style="padding: 10px"><button id="query_by_name_btn" onclick="query()">查  询</button></span>
+</style>
+<body>
+姓名查询：<input id="query_by_name"/><span style="padding: 10px"><button id="query_by_name_btn"
+                                                                    onclick="query()">查  询</button></span>
 
-         <table width="600" border="1" cellspacing="0" style="margin: auto; margin-top: 10px;min-width: 600px">
-            <thead>
-               <tr>
-                  <th>组别</th>
-                  <th>姓名</th>
-                  <th>身份证号</th>
-                  <th>户主姓名</th>
-               </tr>
-            </thead>
-            <tbody id="tbMain"></tbody>
-         </table>
-    </body>
+<table width="600" border="1" cellspacing="0" style="margin: auto; margin-top: 10px;min-width: 600px">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>身份证号</th>
+        <th>户主姓名</th>
+        <th>组别</th>
+    </tr>
+    </thead>
+    <tbody id="tbMain"></tbody>
+</table>
+</body>
 </html>

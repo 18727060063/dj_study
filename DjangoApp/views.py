@@ -11,6 +11,7 @@ def index(request):
 
 
 def load_original_data(request):
-        peoples = models.NormalPeople.objects.filter(pName=request.GET.get("name"))
+        peoples = models.NormalPeople.objects.filter(pName__icontains=request.GET.get("name"))
+        print(peoples.count())
         return JsonResponse(json.loads(serializers.serialize("json", peoples)), safe=False)
 
