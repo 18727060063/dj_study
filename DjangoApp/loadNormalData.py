@@ -26,6 +26,3 @@ def readTecExcel():
             model.pGender = sheet.row_values(i)[10]
         sql = "UNION SELECT '%s','%s','%s',%d,'%s','%s','%s','%s','%s','%s',%d" % (model.pTel, model.pDesc, model.pHostName, model.pAddress, model.pRelation, model.pFamilyNo, model.pSpecial, model.pName, model.pIdNo, model.pGender,model.id)
         print(sql)
-
-if __name__ == '__main__':
-    readTecExcel()

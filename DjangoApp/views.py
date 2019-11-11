@@ -1,14 +1,16 @@
+import json
+
+from django.core import serializers
+from django.http import JsonResponse
 from django.shortcuts import render_to_response
-# Create your views here.
-from DjangoApp import loadNormalData
-from DjangoApp.models import NormalPeople
+from DjangoApp import models
 
 
 def index(request):
-    # loadNormalData.readTecExcel()
-    bb= NormalPeople.objects.all()
-    return render_to_response('index.html', {"data": bb})
+    return render_to_response('index.html')
+
 
 def load_original_data(request):
-    loadNormalData.readTecExcel()
-    return render_to_response('index.html')
+        peoples = models.NormalPeople.objects.filter(pName=request.GET.get("name"))
+        return JsonResponse(json.loads(serializers.serialize("json", peoples)), safe=False)
+
