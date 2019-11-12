@@ -8,9 +8,8 @@
     <script language="javascript" type="text/javascript">
         // 绑定点击事件
         function query() {
-            ;
             const ajaxObj = new XMLHttpRequest();
-            var query_name = document.getElementById("query_by_name").value;
+            let query_name = document.getElementById("query_by_name").value;
             ajaxObj.open('GET', '/load_original_data?name=' + query_name);
             ajaxObj.send();
             //（4）注册事件。 onreadystatechange事件，状态改变时就会调用。
@@ -29,7 +28,7 @@
             let tbody = document.getElementById('tbMain')
             roveRows()
             for (let i = 0; i < json_data.length; i++) { //遍历一下json数据  
-                const trow = getDataRow(i, json_data[i].fields); //定义一个方法,返回tr数据  
+                const trow = getDataRow(i, json_data[i].fields);
                 tbody.appendChild(trow);
             }
         }
@@ -50,7 +49,6 @@
             let indexCell = document.createElement('td'); //创建第一列编号  
             indexCell.innerHTML = index + 1
             row.appendChild(indexCell); //加入行  ，下面类似     
-
 
             let nameCell = document.createElement('td');//创建第二列姓名 
             nameCell.innerHTML = data.pName;
@@ -76,22 +74,42 @@
     body {
         text-align: center;
     }
+
+    .table-container {
+        width: 100%;
+        overflow-y: auto;
+        _overflow: auto;
+        margin: 0 0 1em;
+    }
+
+    .table-container::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+    }
+
+    .table-container::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        border: 3px solid #fff;
+        background-color: rgba(0, 0, 0, .3);
+    }
 </style>
 <body>
 姓名查询：<input id="query_by_name"/><span style="padding: 10px"><button id="query_by_name_btn"
                                                                     onclick="query()">查  询</button></span>
-
-<table width="600" border="1" cellspacing="0" style="margin: auto; margin-top: 10px;min-width: 600px">
-    <thead>
-    <tr>
-        <th>序号</th>
-        <th>姓名</th>
-        <th>身份证号</th>
-        <th>户主姓名</th>
-        <th>组别</th>
-    </tr>
-    </thead>
-    <tbody id="tbMain"></tbody>
-</table>
+<div class="table-container">
+    <table border="1" cellspacing="0" style="margin: auto; margin-top: 10px">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>身份证号</th>
+            <th>户主姓名</th>
+            <th>组别</th>
+        </tr>
+        </thead>
+        <tbody id="tbMain"></tbody>
+    </table>
+</div>
 </body>
 </html>
