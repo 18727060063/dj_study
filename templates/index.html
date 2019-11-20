@@ -94,10 +94,31 @@
         border: 3px solid #fff;
         background-color: rgba(0, 0, 0, .3);
     }
+    .tl-price-input{
+        width: 20%;
+        border: 1px solid #ccc;
+        padding: 7px 0;
+        background: #F4F4F7;
+        border-radius: 3px;
+        padding-left:5px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+    }
+    .ant-btn-red {
+        color: #fff;
+        background-color: #FF5A44;
+        border-color: #FF5A44;
+        margin-left: 5px;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    }
 </style>
 <body>
-姓名查询：<input id="query_by_name" style="min-height: 20px"/><span style="padding: 10px;min-height: 20px"><button id="query_by_name_btn" style="min-height: 15px;min-width: 45px"
-                                                                    onclick="query()">查  询</button></span>
+姓名查询：<input id="query_by_name" class="tl-price-input"/><button id="query_by_name_btn" class="ant-btn-red" onclick="query()">查  询</button>
 <div id="msg_div" style="visibility: hidden">正在查询中,请等待...</div>
 <div class="table-container">
     <table border="1" cellspacing="0" style="margin: auto; margin-top: 10px">
