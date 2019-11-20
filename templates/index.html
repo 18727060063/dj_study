@@ -118,9 +118,12 @@
         -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.040);
         box-shadow: 0 2px 0 rgba(0,0,0,0.040);
     }
+    div{
+        font-size: 20px;
+    }
 </style>
 <body>
-<div>姓名查询：<input id="query_by_name" class="tl-price-input"/><button id="query_by_name_btn" class="ant-btn-red" onclick="query()">查  询</button>
+<div id="query_area">姓名查询：<input id="query_by_name" class="tl-price-input"/><button id="query_by_name_btn" class="ant-btn-red" onclick="query()">查  询</button>
 <div id="msg_div" style="visibility: hidden">正在查询中,请等待...</div></div>
 <div class="table-container">
     <table border="1" cellspacing="0" style="margin: auto; margin-top: 10px;width: 80%">
