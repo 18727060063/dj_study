@@ -91,10 +91,10 @@
 
     .table-container::-webkit-scrollbar-thumb {
         border-radius: 8px;
-        border: 3px solid #fff;
+        border: 2px solid #fff;
         background-color: rgba(0, 0, 0, .3);
     }
-    .tl-price-input{
+    .tl-query-input{
         width: 50%;
         border: 1px solid #ccc;
         margin: 8px;
@@ -118,15 +118,12 @@
         -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.040);
         box-shadow: 0 2px 0 rgba(0,0,0,0.040);
     }
-    div query_area{
-        font-size: 20px;
-    }
 </style>
 <body>
-<input id="query_by_name" placeholder="输入姓名查询" class="tl-price-input"/><button id="query_by_name_btn" class="ant-btn-red" onclick="query()">查  询</button>
+<input id="query_by_name" placeholder="输入姓名查询" class="tl-query-input"/><button id="query_by_name_btn" class="ant-btn-red" onclick="query()">查  询</button>
 <div id="msg_div" style="visibility: hidden">正在查询中,请等待...</div>
 <div class="table-container">
-    <table border="1" cellspacing="0" style="margin: auto; margin-top: 10px;width: 95%">
+    <table border="1" cellspacing="0" style="margin: auto; margin-top: 10px;width: 100%">
         <thead>
         <tr>
             <th>序号</th>
