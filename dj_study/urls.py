@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from DjangoApp import views
+from django.conf.urls import url
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'index/', views.index),
-    path(r"load_original_data/", views.load_original_data)
+    path(r"query/", views.load_original_data),
+    url(r"^$", views.index)
 ]
